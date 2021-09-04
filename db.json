@@ -1,0 +1,28 @@
+{
+  "stocks": [
+    {
+      "id": "8005",
+      "name": "(株)スクロール",
+      "price": "862",
+      "reminder": true
+    },
+    {
+      "id": "4528",
+      "name": "小野薬品工業(株)",
+      "price": "2,579",
+      "reminder": true
+    },
+    {
+      "id": "2929",
+      "name": "(株)ファーマフーズ",
+      "price": "3,105",
+      "reminder": true
+    },
+    {
+      "id": "8002",
+      "name": "丸紅(株)",
+      "price": "847.1",
+      "reminder": true
+    }
+  ]
+}
