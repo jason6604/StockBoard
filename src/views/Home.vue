@@ -9,6 +9,7 @@
     @toggle-reminder="toggleReminder"
     @delete-stock="deleteStock"
     @update-stock="updateStock"
+    @auto-updatestocks="autoUpdateStocks"
     :stocks="stocks"
   />
 </template>
@@ -32,6 +33,7 @@ export default {
       stocks: [],
       html: "",
       cstock: 0,
+      autoUpdate: null,
     };
   },
   methods: {
@@ -143,6 +145,21 @@ export default {
       const data = await response.json();
 
       return data;
+    },
+    async autoUpdateStocks(isAutoUpdate) {
+      console.log("Is Auto Update: " + isAutoUpdate)
+      if (isAutoUpdate) {
+        console.log("Auto Update is ON")
+        this.updateStock();
+        this.autoUpdate = setInterval(() => {
+          this.updateStock();
+        }, 30000);
+      } else {
+        if (this.autoUpdate) {
+          clearInterval(this.autoUpdate);
+          console.log("Auto Update is OFF")
+        }
+      }
     },
   },
   async created() {
