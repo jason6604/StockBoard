@@ -1,17 +1,17 @@
 <template>
   <div class="toolbar">
     <div>
-      <label class="switch" title="Auto update price">
-        <input type="checkbox" />
+      <label class="switch" title="Auto Update Price">
+        <input type="checkbox" @click="autoUpdate()" v-bind:checked="isAutoUpdate" />
         <span class="slider round"></span>
       </label>
-      <i @click="$emit('update-stock')" class="fas fa-sync-alt"></i>
+      <i @click="$emit('update-stock')" class="fas fa-sync-alt" title="Update Price"></i>
     </div>
   </div>
   <div :key="stock.id" v-for="stock in stocks">
     <Stock
       @toggle-reminder="$emit('toggle-reminder', stock.id)"
-      @delete-stock="$emit('delete-stock', stock.id)"
+      @delete-stock="$emit('delete-stock', stock.id)" 
       :stock="stock"
     />
   </div>
@@ -26,10 +26,21 @@ export default {
   props: {
     stocks: Array,
   },
+  data() {
+    return{
+    isAutoUpdate: false,
+    }
+  },
   components: {
     Stock,
   },
-  emits: ["delete-stock", "toggle-reminder","update-stock"],
+  methods: {
+    autoUpdate()  {
+      this.isAutoUpdate = !this.isAutoUpdate;
+      this.$emit("auto-updatestocks", this.isAutoUpdate);
+    }
+  },
+  emits: ["delete-stock", "toggle-reminder","update-stock","auto-updatestocks"],
 };
 </script>
 
